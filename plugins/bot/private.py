@@ -29,14 +29,13 @@ CHAT_ID=Config.CHAT_ID
 playlist=Config.playlist
 LOG_GROUP=Config.LOG_GROUP
 
-HOME_TEXT = "👋🏻 **Hi [{}](tg://user?id={})**,\n\nI'm **Radio Player V3.0** \nI Can Play Radio / Music / YouTube Live In Channel & Group 24x7 Nonstop. Made with ❤️ By @AsmSafone 😉!"
+HOME_TEXT = "👋🏻 **Hi [{}](tg://user?id={})**,\n\nI'm **Radio Player V3.0** \nKanalda və Qrupda 7x24 fasiləsiz Radio / Musiqi / YouTube Canlı Oynaya bilər. @TheThagiyevv tərəfindən  hazırlanmışdır 😉!"
 HELP_TEXT = """
-💡 --**Setting Up**--:
+💡 --**Ayarlamaq**--:
 
 \u2022 Add the bot and user account in your group with admin rights.
-\u2022 Start a voice chat in your group & restart the bot if not joined to vc.
-\u2022 Use /play [song name] or use /play as a reply to an audio file or youtube link.
-
+\u2022 Qrupunuzda səsli söhbətə başlayın və vc-yə qoşulmadıqda botu yenidən başla.
+\u2022 Cavab olaraq /play [mahnı adı] və ya /play istifadə edin
 💡 --**Common Commands**--:
 
 \u2022 `/help` - shows help for all commands
