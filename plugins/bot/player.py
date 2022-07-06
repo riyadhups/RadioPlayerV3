@@ -91,7 +91,7 @@ async def yplay(_, message: Message):
                 type="query"
                 ysearch=query
         else:
-            d=await message.reply_text("❗️ __You Didn't Give Me Anything To Play, Send Me An Audio File or Reply /play To An Audio File!__")
+            d=await message.reply_text("❗️ Mahnı oxutmaq üçün /play yazın!__")
             await mp.delete(d)
             await mp.delete(message)
             return
@@ -99,12 +99,12 @@ async def yplay(_, message: Message):
     group_call = mp.group_call
     if type=="audio":
         if round(m_audio.audio.duration / 60) > DURATION_LIMIT:
-            d=await message.reply_text(f"❌ __Audios Longer Than {DURATION_LIMIT} Minute(s) Aren't Allowed, The Provided Audio Is {round(m_audio.audio.duration/60)} Minute(s)!__")
+            d=await message.reply_text(f"❌ __Audi faylı daha uzundur {DURATION_LIMIT} Minute(s) Aren't Allowed, The Provided Audio Is {round(m_audio.audio.duration/60)} Minute(s)!__")
             await mp.delete(d)
             await mp.delete(message)
             return
         if playlist and playlist[-1][2] == m_audio.audio.file_id:
-            d=await message.reply_text(f"➕ **Already Added To Playlist!**")
+            d=await message.reply_text(f"➕ **Audio fayl əlavə edildi!**")
             await mp.delete(d)
             await mp.delete(message)
             return
@@ -151,7 +151,7 @@ async def yplay(_, message: Message):
             await message.reply_text(pl)        
         elif LOG_GROUP:
             await mp.send_playlist()
-        elif not LOG_GROUP and message.chat.type == "supergroup":
+        elif not LOG_GROUP and message.chat.type == "RiyaddSup":
             k=await message.reply_text(pl)
             await mp.delete(k)
         for track in playlist[:2]:
@@ -171,7 +171,7 @@ async def yplay(_, message: Message):
                 title = results[0]["title"][:40]
             except Exception as e:
                 await msg.edit(
-                    "**Literary Found Noting!\nTry Searching On Inline 😉!**"
+                    "*Mahnı tapıldı!\nDaxili Axtarmağa cəhd edin 😉!**"
                 )
                 print(str(e))
                 return
@@ -306,7 +306,7 @@ async def current(_, m: Message):
     await mp.delete(m)
 
 
-@Client.on_message(filters.command(["volume", f"volume@{USERNAME}"]) & ADMINS_FILTER & (filters.chat(CHAT_ID) | filters.private | filters.chat(LOG_GROUP)))
+@Client.on_message(filters.command(["ses", f"volume@{USERNAME}"]) & ADMINS_FILTER & (filters.chat(CHAT_ID) | filters.private | filters.chat(LOG_GROUP)))
 async def set_vol(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
