@@ -196,16 +196,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton("Mahnılar Axtarın", switch_inline_query_current_chat=""),
             ],
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/AsmSupport"),
+                InlineKeyboardButton("🇦🇿 Rəsmi Kanal", url="https://t.me/RiyaddBlog"),
+                InlineKeyboardButton("SUPPORT", url="https://t.me/RiyaddSup"),
             ],
             [
-                InlineKeyboardButton("MORE BOTS", url="https://t.me/AsmSafone/173"),
-                InlineKeyboardButton("SOURCE CODE", url="https://github.com/AsmSafone/RadioPlayerV3"),
+                InlineKeyboardButton("Daha Çox Botlar", url="https://t.me/RiyaddBlog"),
+                InlineKeyboardButton("Mənbə kodu", url="https://github.com/Riyaddzr/RadioPlayeV"),
             ],
             [
-                InlineKeyboardButton("BACK HOME", callback_data="home"),
-                InlineKeyboardButton("CLOSE MENU", callback_data="close"),
+                InlineKeyboardButton("Evə Qayıt", callback_data="home"),
+                InlineKeyboardButton("Menyü Bağla", callback_data="close"),
             ]
             ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -220,18 +220,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.lower() == "home":
         buttons = [
             [
-                InlineKeyboardButton("SEARCH SONGS INLINE", switch_inline_query_current_chat=""),
+                InlineKeyboardButton("Mahnılar Axtarın", switch_inline_query_current_chat=""),
             ],
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/AsmSupport"),
+                InlineKeyboardButton("🇦🇿Rəsmi Kanal", url="https://t.me/RiyaddBlog"),
+                InlineKeyboardButton("SUPPORT", url="https://t.me/RiyaddSup"),
             ],
             [
-                InlineKeyboardButton("MORE BOTS", url="https://t.me/AsmSafone/173"),
-                InlineKeyboardButton("SOURCE CODE", url="https://github.com/AsmSafone/RadioPlayerV3"),
+                InlineKeyboardButton("Daha çox Botlar", url="https://t.me/RiyaddBlog"),
+                InlineKeyboardButton("mənbə kodu", url="https://github.com/riyadds/musics"),
             ],
             [
-                InlineKeyboardButton("❔ HOW TO USE ❔", callback_data="help"),
+                InlineKeyboardButton("❔ Necə Kömək edə Bilərəm ❔", callback_data="help"),
             ]
             ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -258,22 +258,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
 async def start(client, message):
     buttons = [
             [
-                InlineKeyboardButton("SEARCH SONGS INLINE", switch_inline_query_current_chat=""),
+                InlineKeyboardButton("Mahnı Axtarın", switch_inline_query_current_chat=""),
             ],
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/AsmSupport"),
+                InlineKeyboardButton("🇦🇿Rəsmi Kanal", url="https://t.me/RiyaddBlog"),
+                InlineKeyboardButton("SUPPORT", url="https://t.me/RiyaddSup"),
             ],
             [
-                InlineKeyboardButton("MORE BOTS", url="https://t.me/AsmSafone/173"),
-                InlineKeyboardButton("SOURCE CODE", url="https://github.com/AsmSafone/RadioPlayerV3"),
+                InlineKeyboardButton("Daha çox Botlar", url="https://t.me/RiyaddBlog"),
+                InlineKeyboardButton("Mənbə kodu", url="https://github.com/getdanasencani/hzrideyl"),
             ],
             [
-                InlineKeyboardButton("❔ HOW TO USE ❔", callback_data="help"),
+                InlineKeyboardButton("❔ Necə Kömək Edə Bilərəm ❔", callback_data="help"),
             ]
             ]
     reply_markup = InlineKeyboardMarkup(buttons)
-    m=await message.reply_photo(photo="https://telegra.ph/file/4e839766d45935998e9c6.jpg", caption=HOME_TEXT.format(message.from_user.first_name, message.from_user.id), reply_markup=reply_markup)
+    m=await message.reply_photo(photo="https://images.app.goo.gl/uZrfqvgS2EQ1vUZ38", caption=HOME_TEXT.format(message.from_user.first_name, message.from_user.id), reply_markup=reply_markup)
     await mp.delete(m)
     await mp.delete(message)
 
@@ -282,25 +282,25 @@ async def start(client, message):
 async def help(client, message):
     buttons = [
             [
-                InlineKeyboardButton("SEARCH SONGS INLINE", switch_inline_query_current_chat=""),
+                InlineKeyboardButton("Mahnı Axtarın", switch_inline_query_current_chat=""),
             ],
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/AsmSupport"),
+                InlineKeyboardButton("🇦🇿 Rəsmi Kanal", url="https://t.me/RiyaddBlog"),
+                InlineKeyboardButton("SUPPORT", url="https://t.me/RiyaddSup"),
             ],
             [
-                InlineKeyboardButton("MORE BOTS", url="https://t.me/AsmSafone/173"),
-                InlineKeyboardButton("SOURCE CODE", url="https://github.com/AsmSafone/RadioPlayerV3"),
+                InlineKeyboardButton("Daha çox Botlar", url="https://t.me/RiyaddBlog"),
+                InlineKeyboardButton("SOURCE CODE", url="https://github.com/grtddbalam/hzdddyldehele"),
             ],
             [
-                InlineKeyboardButton("BACK HOME", callback_data="home"),
-                InlineKeyboardButton("CLOSE MENU", callback_data="close"),
+                InlineKeyboardButton("Evə Qayıt", callback_data="home"),
+                InlineKeyboardButton("Menyü Bağla", callback_data="close"),
             ]
             ]
     reply_markup = InlineKeyboardMarkup(buttons)
     if msg.get('help') is not None:
         await msg['help'].delete()
-    msg['help'] = await message.reply_photo(photo="https://telegra.ph/file/4e839766d45935998e9c6.jpg", caption=HELP_TEXT, reply_markup=reply_markup)
+    msg['help'] = await message.reply_photo(photo="https://images.app.goo.gl/uZrfqvgS2EQ1vUZ38", caption=HELP_TEXT, reply_markup=reply_markup)
     await mp.delete(message)
 
 
@@ -309,7 +309,7 @@ async def set_heroku_var(client, message):
     if not Config.HEROKU_APP:
         buttons = [[InlineKeyboardButton('HEROKU_API_KEY', url='https://dashboard.heroku.com/account/applications/authorizations/new')]]
         k=await message.reply_text(
-            text="❗ **No Heroku App Found !** \n__Please Note That, This Command Needs The Following Heroku Vars To Be Set :__ \n\n1. `HEROKU_API_KEY` : Your heroku account api key.\n2. `HEROKU_APP_NAME` : Your heroku app name. \n\n**For More Ask In @AsmSupport !!**", 
+            text="❗ *Heroku Tətbiqi Tapılmadı* !** \n__Heroku Bu Əmrə Aşağıdakı Heroku lazımdır  Quraşdırılmalı :__ \n\n1. `HEROKU_API_KEY` : Your heroku account api key.\n2. `HEROKU_APP_NAME` : Your heroku app name. \n\n**For More Ask In @AsmSupport !!**", 
             reply_markup=InlineKeyboardMarkup(buttons))
         await mp.delete(k)
         await mp.delete(message)
@@ -324,19 +324,19 @@ async def set_heroku_var(client, message):
         var, value = env.split("=", 2)
         config = Config.HEROKU_APP.config()
         if not value:
-            m=await message.reply_text(f"❗ **No Value Specified, So Deleting `{var}` Variable !**")
+            m=await message.reply_text(f"❗ **Dəyər Müəyyən edilməyib, Beləliklə, Silinir `{var}` Dəyişən !**")
             await asyncio.sleep(2)
             if var in config:
                 del config[var]
-                await m.edit(f"🗑 **Sucessfully Deleted `{var}` !**")
+                await m.edit(f"🗑 **Uğurla Silindi `{var}` !**")
                 config[var] = None
             else:
-                await m.edit(f"🤷‍♂️ **Variable Named `{var}` Not Found, Nothing Was Changed !**")
+                await m.edit(f"🤷‍♂️ **Adlandırılmış dəyişən `{var}` Tapılmadı, Heç nə Dəyişilmədi !**")
             return
         if var in config:
-            m=await message.reply_text(f"⚠️ **Variable Already Found, So Edited Value To `{value}` !**")
+            m=await message.reply_text(f"⚠️ **Dəyişən Artıq Tapılıb, Beləki redoktor dəyəri`{value}` !**")
         else:
-            m=await message.reply_text(f"⚠️ **Variable Not Found, So Setting As New Var !**")
+            m=await message.reply_text(f"⚠️ **Dəyişən tapılmadı, ona görə də yeni Var kimi təyin olunur! !**")
         await asyncio.sleep(2)
         await m.edit(f"✅ **Succesfully Set Variable `{var}` With Value `{value}`, Now Restarting To Apply Changes !**")
         config[var] = str(value)
@@ -344,6 +344,6 @@ async def set_heroku_var(client, message):
         await mp.delete(message)
         return
     else:
-        k=await message.reply_text("❗ **You Haven't Provided Any Variable, You Should Follow The Correct Format !** \n\nFor Example: \n• `/setvar CHAT_ID=-1001313215676` to change or set CHAT var. \n• `/setvar REPLY_MESSAGE=` to delete REPLY_MESSAGE var.")
+        k=await message.reply_text("❗ **Siz heç bir dəyişən təqdim etməmisiniz, düzgün formata əməl etməlisiniz !** \n\nFor Example: \n• `/setvar CHAT_ID=-1001313215676` to change or set CHAT var. \n• `/setvar REPLY_MESSAGE=` to delete REPLY_MESSAGE var.")
         await mp.delete(k)
         await mp.delete(message)
