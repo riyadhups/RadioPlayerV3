@@ -50,14 +50,14 @@ async def radio(_, message: Message):
     await mp.delete(k)
     await mp.delete(message)
 
-@Client.on_message(filters.command(["stopradio", f"stopradio@{USERNAME}"]) & ADMINS_FILTER & (filters.chat(CHAT_ID) | filters.private | filters.chat(LOG_GROUP)))
+@Client.on_message(filters.command(["end", f"end@{USERNAME}"]) & ADMINS_FILTER & (filters.chat(CHAT_ID) | filters.private | filters.chat(LOG_GROUP)))
 async def stop(_, message: Message):
     if 0 in RADIO:
-        k=await message.reply_text(f"{emoji.ROBOT} **Please Start A Radio Stream First!**")
+        k=await message.reply_text(f"{emoji.ROBOT} **Zəhmət olmasa Əvvəlcə Radio Yayımına Başlayın!**")
         await mp.delete(k)
         await mp.delete(message)
         return
     await mp.stop_radio()
-    k=await message.reply_text(f"{emoji.CROSS_MARK_BUTTON} **Radio Stream Ended Successfully!**")
+    k=await message.reply_text(f"{emoji.CROSS_MARK_BUTTON} **Radio Yayımı Uğurla Bitdi!**")
     await mp.delete(k)
     await mp.delete(message)
