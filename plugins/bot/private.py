@@ -70,7 +70,7 @@ HELP_TEXT = """
 async def cb_handler(client: Client, query: CallbackQuery):
     if query.from_user.id not in Config.ADMINS and query.data != "help":
         await query.answer(
-            "You're Not Allowed! 🤣",
+            "Sizə İcazə Verilmir! 🤣",
             show_alert=True
             )
         return
@@ -78,18 +78,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
     if query.data.lower() == "replay":
         group_call = mp.group_call
         if not playlist:
-            await query.answer("⛔️ Empty Playlist !", show_alert=True)
+            await query.answer("⛔️ Boş Playlist !", show_alert=True)
             return
         group_call.restart_playout()
         if not playlist:
-            pl = f"{emoji.NO_ENTRY} **Empty Playlist!**"
+            pl = f"{emoji.NO_ENTRY} **Boş Playlist!**"
         else:
             pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
                 f"**{i}**. **{x[1]}**\n  - **Requested By:** {x[4]}"
                 for i, x in enumerate(playlist)
                 ])
         try:
-            await query.answer("🔂 Replaying !", show_alert=True)
+            await query.answer(" 😁 Təkrarlanır !", show_alert=True)
             await query.edit_message_text(f"{pl}",
                     parse_mode="Markdown",
                     disable_web_page_preview=True,
@@ -108,7 +108,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data.lower() == "pause":
         if not playlist:
-            await query.answer("⛔️ Empty Playlist !", show_alert=True)
+            await query.answer("⛔️ Boş Playlist !", show_alert=True)
             return
         else:
             mp.group_call.pause_playout()
@@ -117,7 +117,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 for i, x in enumerate(playlist)
                 ])
         try:
-            await query.answer("⏸ Paused !", show_alert=True)
+            await query.answer("⏸ Yayım dayandırıldı  !", show_alert=True)
             await query.edit_message_text(f"{pl}",
                     parse_mode="Markdown",
                     disable_web_page_preview=True,
@@ -136,7 +136,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data.lower() == "resume":   
         if not playlist:
-            await query.answer("⛔️ Empty Playlist !", show_alert=True)
+            await query.answer("⛔️ Boş Playlist !", show_alert=True)
             return
         else:
             mp.group_call.resume_playout()
@@ -145,7 +145,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 for i, x in enumerate(playlist)
                 ])
         try:
-            await query.answer("▶️ Resumed !", show_alert=True)
+            await query.answer("▶️ Yenidən Davam edir !", show_alert=True)
             await query.edit_message_text(f"{pl}",
                     parse_mode="Markdown",
                     disable_web_page_preview=True,
@@ -164,7 +164,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data.lower() == "skip":   
         if not playlist:
-            await query.answer("⛔️ Empty Playlist !", show_alert=True)
+            await query.answer("⛔️ Boş Playlist !", show_alert=True)
             return
         else:
             await mp.skip_current_playing()
@@ -173,7 +173,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 for i, x in enumerate(playlist)
                 ])
         try:
-            await query.answer("⏩ Skipped !", show_alert=True)
+            await query.answer("⏩ Uğurla Dəyişilir !", show_alert=True)
             await query.edit_message_text(f"{pl}",
                     parse_mode="Markdown",
                     disable_web_page_preview=True,
@@ -193,7 +193,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.lower() == "help":
         buttons = [
             [
-                InlineKeyboardButton("SEARCH SONGS INLINE", switch_inline_query_current_chat=""),
+                InlineKeyboardButton("Mahnılar Axtarın", switch_inline_query_current_chat=""),
             ],
             [
                 InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
