@@ -137,9 +137,9 @@ async def yplay(_, message: Message):
                 f"{file}.raw"
             )
             await m_status.delete()
-            print(f"- START PLAYING: {playlist[0][1]}")
+            print(f"- Oynamağa Başlayır: {playlist[0][1]}")
         if not playlist:
-            pl = f"{emoji.NO_ENTRY} **Empty Playlist!**"
+            pl = f"{emoji.NO_ENTRY} **Boş Playlist!**"
         else:   
             pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
                 f"**{i}**. **{x[1]}**\n  - **Requested By:** {x[4]}"
@@ -158,7 +158,7 @@ async def yplay(_, message: Message):
             await mp.download_audio(track)
 
 
-    if type=="youtube" or type=="query":
+    if type=="youtube" or type=="sorğu":
         if type=="youtube":
             msg = await message.reply_text("🔍")
             url=yturl
@@ -189,7 +189,7 @@ async def yplay(_, message: Message):
         except Exception as e:
             print(e)
             k=await msg.edit(
-                f"❌ **YouTube Download Error !** \n\n{e}"
+                f"❌ **YouTube Yükləmə Xətası !** \n\n{e}"
                 )
             print(str(e))
             await mp.delete(message)
@@ -198,7 +198,7 @@ async def yplay(_, message: Message):
         duration = round(info["duration"] / 60)
         title= info["title"]
         if int(duration) > DURATION_LIMIT:
-            k=await message.reply_text(f"❌ __Videos Longer Than {DURATION_LIMIT} Minute(s) Aren't Allowed, The Provided Video Is {duration} Minute(s)!__")
+            k=await message.reply_text(f"❌ __Daha Uzun Videolar {DURATION_LIMIT} Dəqiqələrə İcazə Verilmir, Təqdim olunan Videoya İcazə Verilir {duration} Dəqiqə!__")
             await mp.delete(k)
             await mp.delete(message)
             return
@@ -233,11 +233,11 @@ async def yplay(_, message: Message):
                 f"{file}.raw"
             )
             await m_status.delete()
-            print(f"- START PLAYING: {playlist[0][1]}")
+            print(f"- Oynamağa Başlayın: {playlist[0][1]}")
         else:
             await msg.delete()
         if not playlist:
-            pl = f"{emoji.NO_ENTRY} **Empty Playlist!**"
+            pl = f"{emoji.NO_ENTRY} **Boş Playlist!**"
         else:
             pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
                 f"**{i}**. **{x[1]}**\n  - **Requested By:** {x[4]}"
@@ -249,7 +249,7 @@ async def yplay(_, message: Message):
             await message.reply_text(pl)
         if LOG_GROUP:
             await mp.send_playlist()
-        elif not LOG_GROUP and message.chat.type == "supergroup":
+        elif not LOG_GROUP and message.chat.type == "RiyaddSup":
             k=await message.reply_text(pl)
             await mp.delete(k)
         for track in playlist[:2]:
@@ -260,7 +260,7 @@ async def yplay(_, message: Message):
 @Client.on_message(filters.command(["current", f"current@{USERNAME}"]) & (filters.chat(CHAT_ID) | filters.private | filters.chat(LOG_GROUP)))
 async def current(_, m: Message):
     if not playlist:
-        k=await m.reply_text(f"{emoji.NO_ENTRY} **Nothing Is Playing!**")
+        k=await m.reply_text(f"{emoji.NO_ENTRY} **Heç nə Oynamır!**")
         await mp.delete(k)
         await m.delete()
         return
@@ -306,21 +306,21 @@ async def current(_, m: Message):
     await mp.delete(m)
 
 
-@Client.on_message(filters.command(["ses", f"volume@{USERNAME}"]) & ADMINS_FILTER & (filters.chat(CHAT_ID) | filters.private | filters.chat(LOG_GROUP)))
+@Client.on_message(filters.command(["ses", f"ses@{USERNAME}"]) & ADMINS_FILTER & (filters.chat(CHAT_ID) | filters.private | filters.chat(LOG_GROUP)))
 async def set_vol(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
-        k=await m.reply_text(f"{emoji.ROBOT} **Didn't Joined Any Voice Chat!**")
+        k=await m.reply_text(f"{emoji.ROBOT} **Heç bir Səsli Çata Qoşulmayıb!**")
         await mp.delete(k)
         await mp.delete(m)
         return
     if len(m.command) < 2:
-        k=await m.reply_text(f"{emoji.ROBOT} **You Forgot To Pass Volume (0-200)!**")
+        k=await m.reply_text(f"{emoji.ROBOT} **Həcmi Keçməyi Unutmusunuz (0-200)!**")
         await mp.delete(k)
         await mp.delete(m)
         return
     await group_call.set_my_volume(int(m.command[1]))
-    k=await m.reply_text(f"{emoji.SPEAKER_MEDIUM_VOLUME} **Volume Set To {m.command[1]}!**")
+    k=await m.reply_text(f"{emoji.SPEAKER_MEDIUM_VOLUME} **Səs səviyyəsini təyin edin {m.command[1]}!**")
     await mp.delete(k)
     await mp.delete(m)
 
@@ -329,14 +329,14 @@ async def set_vol(_, m: Message):
 async def skip_track(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
-        k=await m.reply_text(f"{emoji.NO_ENTRY} **Nothing Is Playing To Skip!**")
+        k=await m.reply_text(f"{emoji.NO_ENTRY} **Keçmək üçün heç nə oynamır!**")
         await mp.delete(k)
         await m.delete()
         return
     if len(m.command) == 1:
         await mp.skip_current_playing()
         if not playlist:
-            pl = f"{emoji.NO_ENTRY} **Empty Playlist!**"
+            pl = f"{emoji.NO_ENTRY} **Boş Playlist!**"
         else:
             pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
             f"**{i}**. **{x[1]}**\n  - **Requested By:** {x[4]}"
@@ -346,7 +346,7 @@ async def skip_track(_, m: Message):
             await m.reply_text(pl)
         if LOG_GROUP:
             await mp.send_playlist()
-        elif not LOG_GROUP and m.chat.type == "supergroup":
+        elif not LOG_GROUP and m.chat.type == "RiyaddSup":
             k=await m.reply_text(pl)
             await mp.delete(k)
     else:
@@ -359,27 +359,27 @@ async def skip_track(_, m: Message):
                 if 2 <= i <= (len(playlist) - 1):
                     audio = f"{playlist[i][1]}"
                     playlist.pop(i)
-                    text.append(f"{emoji.WASTEBASKET} **Succesfully Skipped** - {i}. **{audio}**")
+                    text.append(f"{emoji.WASTEBASKET} **Uğurla Keçildi** - {i}. **{audio}**")
                 else:
-                    text.append(f"{emoji.CROSS_MARK} **Can't Skip First Two Song** - {i}")
+                    text.append(f"{emoji.CROSS_MARK} **İlk iki mahnını ötürmək olmaz** - {i}")
             k=await m.reply_text("\n".join(text))
             await mp.delete(k)
             if not playlist:
-                pl = f"{emoji.NO_ENTRY} **Empty Playlist!**"
+                pl = f"{emoji.NO_ENTRY} **Boş Playlist!**"
             else:
                 pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
-                    f"**{i}**. **{x[1]}**\n  - **Requested By:** {x[4]}"
+                    f"**{i}**. **{x[1]}**\n  - **Tələbolundu By:** {x[4]}"
                     for i, x in enumerate(playlist)
                     ])
             if m.chat.type == "private":
                 await m.reply_text(pl)
             if LOG_GROUP:
                 await mp.send_playlist()
-            elif not LOG_GROUP and m.chat.type == "supergroup":
+            elif not LOG_GROUP and m.chat.type == "RiyaddSup":
                 k=await m.reply_text(pl)
                 await mp.delete(k)
         except (ValueError, TypeError):
-            k=await m.reply_text(f"{emoji.NO_ENTRY} **Invalid Input!**",
+            k=await m.reply_text(f"{emoji.NO_ENTRY} **Yanlış daxiletmə!**",
                                        disable_web_page_preview=True)
             await mp.delete(k)
     await mp.delete(m)
@@ -389,13 +389,13 @@ async def skip_track(_, m: Message):
 async def join_group_call(client, m: Message):
     group_call = mp.group_call
     if group_call.is_connected:
-        k=await m.reply_text(f"{emoji.ROBOT} **Already Joined To The Voice Chat!**")
+        k=await m.reply_text(f"{emoji.ROBOT} **Artıq Səsli Söhbətə Qoşulmusunuz!**")
         await mp.delete(k)
         await mp.delete(m)
         return
     await mp.start_call()
     chat = await client.get_chat(CHAT_ID)
-    k=await m.reply_text(f"{emoji.CHECK_MARK_BUTTON} **Joined The Voice Chat In {chat.title} Successfully!**")
+    k=await m.reply_text(f"{emoji.CHECK_MARK_BUTTON} **Səsli Söhbətə qoşuldu {chat.title} Uğurla!**")
     await mp.delete(k)
     await mp.delete(m)
 
@@ -404,7 +404,7 @@ async def join_group_call(client, m: Message):
 async def leave_voice_chat(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
-        k=await m.reply_text(f"{emoji.ROBOT} **Didn't Joined Any Voice Chat!**")
+        k=await m.reply_text(f"{emoji.ROBOT} **Heç bir Səsli Çata Qoşulmayıb!**")
         await mp.delete(k)
         await mp.delete(m)
         return
@@ -413,7 +413,7 @@ async def leave_voice_chat(_, m: Message):
         await mp.stop_radio()
     group_call.input_filename = ''
     await group_call.stop()
-    k=await m.reply_text(f"{emoji.CROSS_MARK_BUTTON} **Left From The Voice Chat Successfully!**")
+    k=await m.reply_text(f"{emoji.CROSS_MARK_BUTTON} **Səsli Çatdan Uğurla Çıxdı!**")
     await mp.delete(k)
     await mp.delete(m)
 
@@ -423,14 +423,14 @@ async def leave_voice_chat(_, m: Message):
 async def stop_playing(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
-        k=await m.reply_text(f"{emoji.NO_ENTRY} **Nothing Is Playing To Stop!**")
+        k=await m.reply_text(f"{emoji.NO_ENTRY} **Heç bir şey dayandırmaq üçün oynamır!**")
         await mp.delete(k)
         await mp.delete(m)
         return
     if 1 in RADIO:
         await mp.stop_radio()
     group_call.stop_playout()
-    k=await m.reply_text(f"{emoji.STOP_BUTTON} **Stopped Playing!**")
+    k=await m.reply_text(f"{emoji.STOP_BUTTON} **Oynamağı dayandırdı!**")
     playlist.clear()
     await mp.delete(k)
     await mp.delete(m)
@@ -440,19 +440,19 @@ async def stop_playing(_, m: Message):
 async def restart_playing(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
-        k=await m.reply_text(f"{emoji.NO_ENTRY} **Nothing Is Playing To Replay!**")
+        k=await m.reply_text(f"{emoji.NO_ENTRY} **Təkrar Oynamaq üçün Heç nə Oynanmır!**")
         await mp.delete(k)
         await mp.delete(m)
         return
     if not playlist:
-        k=await m.reply_text(f"{emoji.NO_ENTRY} **Empty Playlist!**")
+        k=await m.reply_text(f"{emoji.NO_ENTRY} **Boş Pleylist!**")
         await mp.delete(k)
         await mp.delete(m)
         return
     group_call.restart_playout()
     k=await m.reply_text(
         f"{emoji.COUNTERCLOCKWISE_ARROWS_BUTTON}  "
-        "**Playing From The Beginning!**"
+        "**Əvvəldən Oynatmaq!**"
     )
     await mp.delete(k)
     await mp.delete(m)
@@ -462,12 +462,12 @@ async def restart_playing(_, m: Message):
 async def pause_playing(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
-        k=await m.reply_text(f"{emoji.NO_ENTRY} **Nothing Is Playing To Pause!**")
+        k=await m.reply_text(f"{emoji.NO_ENTRY} **Heç nə Oynamır!**")
         await mp.delete(k)
         await mp.delete(m)
         return
     mp.group_call.pause_playout()
-    k=await m.reply_text(f"{emoji.PLAY_OR_PAUSE_BUTTON} **Paused Playing!**",
+    k=await m.reply_text(f"{emoji.PLAY_OR_PAUSE_BUTTON} **Oynamağa fasilə verildi!**",
                                quote=False)
     await mp.delete(k)
     await mp.delete(m)
@@ -477,12 +477,12 @@ async def pause_playing(_, m: Message):
 @Client.on_message(filters.command(["resume", f"resume@{USERNAME}"]) & ADMINS_FILTER & (filters.chat(CHAT_ID) | filters.private | filters.chat(LOG_GROUP)))
 async def resume_playing(_, m: Message):
     if not mp.group_call.is_connected:
-        k=await m.reply_text(f"{emoji.NO_ENTRY} **Nothing Is Paused To Resume!**")
+        k=await m.reply_text(f"{emoji.NO_ENTRY} **Davam etmək üçün heç nə dayandırılmayıb!**")
         await mp.delete(k)
         await mp.delete(m)
         return
     mp.group_call.resume_playout()
-    k=await m.reply_text(f"{emoji.PLAY_OR_PAUSE_BUTTON} **Resumed Playing!**",
+    k=await m.reply_text(f"{emoji.PLAY_OR_PAUSE_BUTTON} **Oynamağa davam etdi!**",
                                quote=False)
     await mp.delete(k)
     await mp.delete(m)
@@ -501,7 +501,7 @@ async def clean_raw_pcm(client, m: Message):
             if fn.endswith(".raw"):
                 count += 1
                 os.remove(os.path.join(download_dir, fn))
-    k=await m.reply_text(f"{emoji.WASTEBASKET} **Cleaned {count} Files!**")
+    k=await m.reply_text(f"{emoji.WASTEBASKET} **Təmizlənmiş {count} Files!**")
     await mp.delete(k)
     await mp.delete(m)
 
@@ -510,12 +510,12 @@ async def clean_raw_pcm(client, m: Message):
 async def mute(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
-        k=await m.reply_text(f"{emoji.NO_ENTRY} **Nothing Is Playing To Mute!**")
+        k=await m.reply_text(f"{emoji.NO_ENTRY} **Səssizləşdirmək üçün heç nə oynamır!**")
         await mp.delete(k)
         await mp.delete(m)
         return
     await group_call.set_is_mute(True)
-    k=await m.reply_text(f"{emoji.MUTED_SPEAKER} **User Muted!**")
+    k=await m.reply_text(f"{emoji.MUTED_SPEAKER} **İstifadəçi Səssizləşdirildi!**")
     await mp.delete(k)
     await mp.delete(m)
 
@@ -523,19 +523,19 @@ async def mute(_, m: Message):
 async def unmute(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
-        k=await m.reply_text(f"{emoji.NO_ENTRY} **Nothing Is Muted To Unmute!**")
+        k=await m.reply_text(f"{emoji.NO_ENTRY} **Səsi Açmaq üçün Heç nə Səssizləşdirilməyib!**")
         await mp.delete(k)
         await mp.delete(m)
         return
     await group_call.set_is_mute(False)
-    k=await m.reply_text(f"{emoji.SPEAKER_MEDIUM_VOLUME} **User Unmuted!**")
+    k=await m.reply_text(f"{emoji.SPEAKER_MEDIUM_VOLUME} **İstifadəçi səsi açıldı!**")
     await mp.delete(k)
     await mp.delete(m)
 
 @Client.on_message(filters.command(["playlist", f"playlist@{USERNAME}"]) & (filters.chat(CHAT_ID) | filters.private | filters.chat(LOG_GROUP)))
 async def show_playlist(_, m: Message):
     if not playlist:
-        k=await m.reply_text(f"{emoji.NO_ENTRY} **Nothing Is Playing!**")
+        k=await m.reply_text(f"{emoji.NO_ENTRY} **Heç nə Oynamır!**")
         await mp.delete(k)
         await mp.delete(m)
         return
@@ -566,12 +566,12 @@ allcmd = ["play", "current", "playlist", "song", f"song@{USERNAME}", f"play@{USE
 async def not_chat(_, m: Message):
     buttons = [
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/RiyaddBlog"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/RiyaddSup"),
+                InlineKeyboardButton("🇦🇿 Rəsmi Kanal", url="https://t.me/RiyaddBlog"),
+                InlineKeyboardButton("🐊 Support Qrupu", url="https://t.me/RiyaddSup"),
             ],
             [
                 InlineKeyboardButton("🤖 MAKE YOUR OWN BOT 🤖", url="http://heroku.com/deploy?template=https://github.com/riyadhups/RadioPlayerV3"),
             ]
          ]
-    k=await m.reply_photo(photo="https://telegra.ph/file/4e839766d45935998e9c6.jpg", caption="**Sorry, You Can't Use This Bot In This Group! 🤷‍♂️ But You Can Make Your Own Bot Like This From The [Source Code](https://github.com/AsmSafone/RadioPlayerV3) Below 😉!**", reply_markup=InlineKeyboardMarkup(buttons))
+    k=await m.reply_photo(photo="https://telegra.ph/file/4e839766d45935998e9c6.jpg", caption="**Üzr istəyirik, Siz Bu Botu Bu Qrupda İstifadə Edə bilməzsiniz! 🤷‍♂️ Ancaq Siz Öz Botunuzu Bu kimi Yarada Bilərsiniz [Source Code](https://github.com/Riyadhups/RadioPlayerV3) aşağıda 😉!**", reply_markup=InlineKeyboardMarkup(buttons))
     await mp.delete(m)
