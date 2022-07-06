@@ -33,36 +33,36 @@ HOME_TEXT = "👋🏻 **Hi [{}](tg://user?id={})**,\n\nI'm **Radio Player V3.0**
 HELP_TEXT = """
 💡 --**Ayarlamaq**--:
 
-\u2022 Add the bot and user account in your group with admin rights.
+\u2022 Əlavə Et.Admin hüquqları ilə qrupunuza bot və istifadəçi hesabını əlavə edin
 \u2022 Qrupunuzda səsli söhbətə başlayın və vc-yə qoşulmadıqda botu yenidən başla.
 \u2022 Cavab olaraq /play [mahnı adı] və ya /play istifadə edin
 💡 --**Common Commands**--:
 
-\u2022 `/help` - shows help for all commands
-\u2022 `/song` [song name] - download the song as audio
-\u2022 `/current` - shows current track with controls
-\u2022 `/playlist` - shows the current & queued playlist
+\u2022 `/help` - bütün əmrlər üçün yardım göstərir
+\u2022 `/song` - mahnı [mahnı adı] - mahnını audio kimi endirin
+\u2022 `/current` - idarəetmə ilə cari treki göstərir
+\u2022 `/playlist` - cari və növbəli pleylistini göstərir
 
-💡 --**Admins Commands**--:
+💡 --**Admin Əmirləri**--:
 
-\u2022 `/radio` - start radio stream
-\u2022 `/stopradio` - stop radio stream
+\u2022 `/radio` - radio axını başladın
+\u2022 `/stopradio` - radio axını dayandırın
 \u2022 `/skip` - skip current music
-\u2022 `/join` - join the voice chat
-\u2022 `/leave` - leave the voice chat
-\u2022 `/stop` - stop playing music
-\u2022 `/volume` - change volume (0-200)
-\u2022 `/replay` - play from the beginning
-\u2022 `/clean` - remove unused raw files
-\u2022 `/pause` - pause playing music
-\u2022 `/resume` - resume playing music
-\u2022 `/mute` - mute the vc userbot
-\u2022 `/unmute` - unmute the vc userbot
-\u2022 `/restart` - update & restart the bot
-\u2022 `/setvar` - set/change heroku configs
+\u2022 `/join` - səsli söhbətə qoşulun
+\u2022 `/leave` - səsli söhbəti tərk edin
+\u2022 `/stop` - musiqi çalmağı dayandırın
+\u2022 `/ses` - səs həcmi (0-200)
+\u2022 `/replay` - əvvəldən oynayın
+\u2022 `/clean` - istifadə olunmamış xam faylları silin
+\u2022 `/pause` - musiqi oxumağa fasilə verin
+\u2022 `/resume` - musiqi oxumağa davam edin
+\u2022 `/mute` - səssizə atar
+\u2022 `/unmute` - səsi açar 
+\u2022 `/restart` - botu yeniden başlat 
+\u2022 `/setvar` - ...
 
 © **Powered By** : 
-**@AsmSafone | @AsmSupport** 👑
+**@TheThagiyevv | @RiyaddSup** 👑
 """
 
 
