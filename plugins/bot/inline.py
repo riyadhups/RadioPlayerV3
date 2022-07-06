@@ -28,14 +28,14 @@ REPLY_MESSAGE=Config.REPLY_MESSAGE
 
 buttons = [
             [
-                InlineKeyboardButton("❔ HOW TO USE ME ❔", callback_data="help"),
+                InlineKeyboardButton("❔ MƏNDƏN NECƏ İSTİFADƏ ETMƏK OLAR ❔", callback_data="help"),
             ],
             [
-                InlineKeyboardButton("CHANNEL", url="https://t.me/AsmSafone"),
-                InlineKeyboardButton("SUPPORT", url="https://t.me/AsmSupport"),
+                InlineKeyboardButton("🇦🇿 Rəsmi Kanal", url="https://t.me/RiyaddBlog"),
+                InlineKeyboardButton("🐊 Dəstək", url="https://t.me/RiyaddSup"),
             ],
             [
-                InlineKeyboardButton("🤖 MAKE YOUR OWN BOT 🤖", url="https://heroku.com/deploy?template=https://github.com/AsmSafone/RadioPlayerV3"),
+                InlineKeyboardButton("🤖 MAKE YOUR OWN BOT 🤖", url="https://heroku.com/deploy?template=https://github.com/Riyadhups/RadioPlayerV3"),
             ]
          ]
 
@@ -46,10 +46,10 @@ async def search(client, query):
     if query.query == "SAF_ONE":
         answers.append(
             InlineQueryResultPhoto(
-                title="Deploy Your Own Radio Player",
-                thumb_url="https://telegra.ph/file/4e839766d45935998e9c6.jpg",
-                photo_url="https://telegra.ph/file/4e839766d45935998e9c6.jpg",
-                caption=f"{REPLY_MESSAGE}\n\n<b>© Powered By : \n@AsmSafone | @AsmSupport 👑</b>",
+                title="Öz Radio Pleyerinizi yerləşdirin",
+                thumb_url="https://images.app.goo.gl/uZrfqvgS2EQ1vUZ38",
+                photo_url="https://images.app.goo.gl/uZrfqvgS2EQ1vUZ38",
+                caption=f"{REPLY_MESSAGE}\n\n<b>© 🧑‍💻Sahibim : \n@TheThagiyevv| @RiyaddSup 👑</b>",
                 reply_markup=InlineKeyboardMarkup(buttons)
                 )
             )
@@ -60,7 +60,7 @@ async def search(client, query):
         await client.answer_inline_query(
             query.id,
             results=answers,
-            switch_pm_text=("✍️ Type An Video Name !"),
+            switch_pm_text=("✍️ Video Adı Yazın !"),
             switch_pm_parameter="help",
             cache_time=0
         )
@@ -91,7 +91,7 @@ async def search(client, query):
             await query.answer(
                 results=answers,
                 cache_time=0,
-                switch_pm_text=("Error: Search Timed Out!"),
+                switch_pm_text=("Xəta: Axtarış vaxtı bitdi!"),
                 switch_pm_parameter="",
             )
 
